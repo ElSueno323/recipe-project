@@ -1,0 +1,68 @@
+<script>
+  // Modifies the DOM to update the display and formular container.
+  export function modification() {
+    const div = document.getElementById("display");
+    div.style.display = "none";
+
+    const formularContainer = document.getElementById("formularContainer");
+    formularContainer.innerHTML = "";
+
+    const form = document.createElement("form");
+    form.action = "/update/<%= recipe._id%>";
+    form.method = "post";
+
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.name = "name";
+    nameInput.value = "<%= recipe.name%>";
+    nameInput.required = true;
+
+    const descriptionInput = document.createElement("textarea");
+    descriptionInput.name = "description";
+    descriptionInput.style.width = "80%";
+    descriptionInput.value = "<%= recipe.description%>";
+    descriptionInput.required = true;
+
+    //manque ingredients
+
+    form.appendChild(nameInput);
+    form.appendChild(document.createElement("br"));
+    form.appendChild(descriptionInput);
+    form.appendChild(document.createElement("br"));
+
+    const submit = document.createElement("button");
+    submit.type = "submit";
+    submit.textContent = "update";
+
+    form.appendChild(submit);
+    formularContainer.appendChild(form);
+  }
+
+  // Adds a new ingredient input field to the form.
+
+  // This function is responsible for adding a new input field for an ingredient to the form. It finds the parent 
+  // div element with the id "addRecipe" and then locates the form element within it. It then finds the table body 
+  // element within the form and gets the row at index 2. From there, it finds the span element with the class 
+  // "ingredients" within the row. It creates a new input element, sets its type to "text", assigns it a unique 
+  // name based on a counter variable, and marks it as required. The input element is then appended to the span 
+  // element, effectively adding a new ingredient input field to the form.
+
+  // No parameters are required for this function.
+
+  // There is no return value for this function.
+  function addIngredient() {
+    const champDiv = document.getElementById("addRecipe");
+
+    const form = champDiv.querySelector("form");
+
+    const ligne = form.querySelector("tbody").rows[2];
+    const spanIngredient = ligne.querySelector("span.ingredients");
+
+    const newInput = document.createElement("input");
+    newInput.type = "text";
+    newInput.name = "ingredient" + i++;
+    newInput.required = true;
+
+    spanIngredient.appendChild(newInput);
+  }
+</script>

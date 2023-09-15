@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%= recipe.name %>
+    </title>
+    
+
+</head>
+
+<body>
+    
+
+    <h1> <a href="/">Recipe <%= recipe.name %>
+    </h1></a>
+    <div id="display">
+        <p>
+            <%= recipe.description %>
+        </p>
+        <p>
+            <%= recipe.instructions %>
+        </p>
+
+        <p>Ingredients :</p>
+        <ul>
+            <% recipe.ingredients.forEach(ingredient=> { %>
+                <li>
+                    <%= ingredient %>
+                </li>
+                <% }); %>
+        </ul>
+        
+        <p>Created at: <%= recipe.created_at %>
+        </p>
+        <p>Updated at: <%= recipe.updated_at %>
+        </p>
+        <button onclick="modification()">Update</button>
+    </div>
+
+    <div id="formularContainer"></div>
+
+    <script>
+    function modification() {
+        const div = document.getElementById('display');
+        div.style.display = 'none';
+
+        const formularContainer = document.getElementById('formularContainer');
+        formularContainer.innerHTML = '';
+
+        const form = document.createElement('form');
+        form.action='/update/<%= recipe._id%>';
+        form.method='post';
+
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.name = 'name';
+        nameInput.value = "<%= recipe.name%>";
+        nameInput.required = true;
+
+        const descriptionInput = document.createElement('textarea');
+        descriptionInput.name = 'description';
+        descriptionInput.style.width = '50%';
+        descriptionInput.style.height = '9rem';
+        descriptionInput.value = "<%= recipe.description%>";
+        descriptionInput.required = true;
+
+        //manque ingredients
+
+        form.appendChild(nameInput);
+        form.appendChild(document.createElement('br'));
+        form.appendChild(descriptionInput);
+        form.appendChild(document.createElement('br'));
+
+        const submit = document.createElement('button');
+        submit.type = 'submit';
+        submit.textContent='update';
+
+        form.appendChild(submit);
+        formularContainer.appendChild(form);
+    }
+    
+    </script>
+</body>
+
+
+</html>

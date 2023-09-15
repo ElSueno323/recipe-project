@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <title>List of Recipes</title>
+  </head>
+
+  <body>
+    <h1>List of Recipes</h1>
+    <p>Search<input type="text" name="searching" /></p>
+    <ul>
+      <% recipesList.forEach(recipe=> { %>
+
+      <table>
+        <tr>
+          <td>
+            <form action="/delete" method="post">
+              <input type="hidden" name="id" value="<%= recipe._id %>" />
+              <button class="delete">X</button>
+            </form>
+          </td>
+          <td><a href="/<%= recipe._id %>"><%= recipe.name %></a></td>
+        </tr>
+      </table>
+      <% }); %>
+      <div id="addRecipe">
+        <h3>Add a new recipe:</h3>
+        <form id="formular" action="/add" method="post">
+          <table>
+            <tr>
+              <td>Name :</td>
+              <td><input type="text" name="name" required /></td>
+            </tr>
+            <tr>
+              <td>Description :</td>
+              <td><input type="text" name="description" required /></td>
+            </tr>
+            <tr>
+              <td>Ingredients :</td>
+              <td><input type="text" name="ingredient" required /></td>
+              <td><span class="ingredients"></span></td>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  type="button"
+                  onclick="addIngredient()"
+                  title="Add a new ingredient"
+                >
+                  +
+                </button>
+              </td>
+              <td><button type="submit">Add</button></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </ul>
+    <script>
+      var i = 0;
+      // Adds an ingredient input field to the recipe form.
+      function addIngredient() {
+        const champDiv = document.getElementById("addRecipe");
+
+        const form = champDiv.querySelector("form");
+
+        const ligne = form.querySelector("tbody").rows[2];
+        const spanIngredient = ligne.querySelector("span.ingredients");
+
+        const newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.name = "ingredient" + i++;
+        newInput.required = true;
+
+        spanIngredient.appendChild(newInput);
+      }
+    </script>
+  </body>
+</html>
