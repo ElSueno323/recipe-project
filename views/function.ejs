@@ -1,42 +1,64 @@
 <script>
   // Modifies the DOM to update the display and formular container.
   export function modification() {
-    const div = document.getElementById("display");
-    div.style.display = "none";
+        const div = document.getElementById('display');
+        div.style.display = 'none';
 
-    const formularContainer = document.getElementById("formularContainer");
-    formularContainer.innerHTML = "";
+        const formularContainer = document.getElementById('formularContainer');
+        formularContainer.innerHTML = '';
 
-    const form = document.createElement("form");
-    form.action = "/update/<%= recipe._id%>";
-    form.method = "post";
+        const form = document.createElement('form');
+        form.action='/update';
+        form.method='post';
 
-    const nameInput = document.createElement("input");
-    nameInput.type = "text";
-    nameInput.name = "name";
-    nameInput.value = "<%= recipe.name%>";
-    nameInput.required = true;
+        const idInput=document.createElement('input');
+        idInput.type='hidden';
+        idInput.name='id';
+        idInput.value="<%= recipe._id%>";
 
-    const descriptionInput = document.createElement("textarea");
-    descriptionInput.name = "description";
-    descriptionInput.style.width = "80%";
-    descriptionInput.value = "<%= recipe.description%>";
-    descriptionInput.required = true;
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.name = 'name';
+        nameInput.value = "<%= recipe.name%>";
+        nameInput.required = true;
 
-    //manque ingredients
+        const descriptionInput = document.createElement('textarea');
+        descriptionInput.name = 'description';
+        descriptionInput.style.width = '50%';
+        descriptionInput.style.height = '9rem';
+        descriptionInput.value = "<%= recipe.description%>";
+        descriptionInput.required = true;
+    
 
-    form.appendChild(nameInput);
-    form.appendChild(document.createElement("br"));
-    form.appendChild(descriptionInput);
-    form.appendChild(document.createElement("br"));
+        form.appendChild(idInput);
+        form.appendChild(nameInput);
+        form.appendChild(document.createElement('br'));
 
-    const submit = document.createElement("button");
-    submit.type = "submit";
-    submit.textContent = "update";
+        var recipe_incredients_length = "<%= recipe.ingredients.length%>";
+        for (var index = 0; index < recipe_incredients_length; index++) {
+            const ingredientsInput= document.createElement('input');
+            ingredientsInput.type = 'text';
+            ingredientsInput.name = 'ingredients['+ index +']';
+            ingredientsInput.required = true;
+            var ingredient = <%- JSON.stringify(recipe) %>.ingredients;
+            ingredientsInput.value = ingredient[index];
+            ingredientsInput.style.width = '5rem';
+            form.appendChild(ingredientsInput);
+            if(index%2 == 1) {
+                form.appendChild(document.createElement('br'));
+            }
+        }
 
-    form.appendChild(submit);
-    formularContainer.appendChild(form);
-  }
+        form.appendChild(descriptionInput);
+        form.appendChild(document.createElement('br'));
+
+        const submit = document.createElement('button');
+        submit.type = 'submit';
+        submit.textContent='update';
+
+        form.appendChild(submit);
+        formularContainer.appendChild(form);
+    }
 
   // Adds a new ingredient input field to the form.
 
@@ -50,19 +72,19 @@
   // No parameters are required for this function.
 
   // There is no return value for this function.
-  function addIngredient() {
-    const champDiv = document.getElementById("addRecipe");
+  export function addIngredient() {
+        const champDiv = document.getElementById("addRecipe");
 
-    const form = champDiv.querySelector("form");
+        const form = champDiv.querySelector("form");
 
-    const ligne = form.querySelector("tbody").rows[2];
-    const spanIngredient = ligne.querySelector("span.ingredients");
+        const ligne = form.querySelector("tbody").rows[2];
+        const spanIngredient = ligne.querySelector("span.ingredients");
 
-    const newInput = document.createElement("input");
-    newInput.type = "text";
-    newInput.name = "ingredient" + i++;
-    newInput.required = true;
+        const newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.name = "ingredients[" + i++ +"]";
+        newInput.required = true;
 
-    spanIngredient.appendChild(newInput);
-  }
+        spanIngredient.appendChild(newInput);
+      }
 </script>

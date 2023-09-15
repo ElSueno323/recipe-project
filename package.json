@@ -2,7 +2,7 @@
   "name": "recipe-manager",
   "version": "1.0.0",
   "description": "A recipe management application that allows users to create,view , and search for recipe",
-  "main": "application/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,6 @@
     "express": "^4.18.2"
   },
   "dependencies": {
-    "mongoose": "^7.5.1",
-    "sqlite3": "^5.1.6"
+    "mongoose": "^7.5.1"
   }
 }

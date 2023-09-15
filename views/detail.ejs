@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <title>
-        <%= recipe.name %>
-    </title>
-    
-
-</head>
-
-<body>
-    
-
-    <h1> <a href="/">Recipe <%= recipe.name %>
-    </h1></a>
     <div id="display">
         <p>
             <%= recipe.description %>
@@ -50,8 +34,13 @@
         formularContainer.innerHTML = '';
 
         const form = document.createElement('form');
-        form.action='/update/<%= recipe._id%>';
+        form.action='/update';
         form.method='post';
+
+        const idInput=document.createElement('input');
+        idInput.type='hidden';
+        idInput.name='id';
+        idInput.value="<%= recipe._id%>";
 
         const nameInput = document.createElement('input');
         nameInput.type = 'text';
@@ -65,11 +54,27 @@
         descriptionInput.style.height = '9rem';
         descriptionInput.value = "<%= recipe.description%>";
         descriptionInput.required = true;
+    
 
-        //manque ingredients
-
+        form.appendChild(idInput);
         form.appendChild(nameInput);
         form.appendChild(document.createElement('br'));
+
+        var recipe_incredients_length = "<%= recipe.ingredients.length%>";
+        for (var index = 0; index < recipe_incredients_length; index++) {
+            const ingredientsInput= document.createElement('input');
+            ingredientsInput.type = 'text';
+            ingredientsInput.name = 'ingredients['+ index +']';
+            ingredientsInput.required = true;
+            var ingredient = <%- JSON.stringify(recipe) %>.ingredients;
+            ingredientsInput.value = ingredient[index];
+            ingredientsInput.style.width = '5rem';
+            form.appendChild(ingredientsInput);
+            if(index%2 == 1) {
+                form.appendChild(document.createElement('br'));
+            }
+        }
+
         form.appendChild(descriptionInput);
         form.appendChild(document.createElement('br'));
 
@@ -82,7 +87,3 @@
     }
     
     </script>
-</body>
-
-
-</html>

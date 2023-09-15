@@ -16,15 +16,15 @@ module.exports=function(app){
 
     app.get('/',function(req,res){
         Recipes.find({}).then((recipesList)=>{
-            res.render('recipes.ejs',{recipesList});
+           res.render('layout',{title:'List of Recipes',content:'recipes',recipesList:recipesList});
         })
     })
 
     app.get('/:id',function(req,res){
         Recipes.findById({_id:req.params.id}).then((recipe)=>{
-            res.render('detail.ejs',{recipe});
+            res.render('layout',{title:"Recipe "+recipe.name,content:'detail.ejs',recipe:recipe});
         }).catch((err)=>{
-            res.render('error.ejs',{err});
+            res.render('layout',{title:'Error',content:'error',error:err},);
         })
     })
 
@@ -32,13 +32,25 @@ module.exports=function(app){
         Recipes.findByIdAndRemove({_id:req.body.id}).then((recipe)=>{
             res.redirect('/');
         }).catch((err)=>{
-            res.render('error.ejs',{err});
+            res.render('layout',{title:'Error',content:'error',error:err});
     })}
     )
 
     app.post('/add',function(req,res){
+        req.body.created_at=new Date();
+        req.body.updated_at=new Date();
         Recipes.create(req.body).then((recipe)=>{
+           res.redirect('/');
+        })
+    })
+
+    app.post('/update',function(req,res){
+        req.body.updated_at=new Date();
+        console.log(req.body);
+        Recipes.findByIdAndUpdate({_id:req.body.id},req.body).then((recipe)=>{
             res.redirect('/');
+        }).catch((err)=>{
+            res.render('layout',{title:'Error',content:'error',error:err});
         })
     })
 };

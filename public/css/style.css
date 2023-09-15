@@ -1,0 +1,45 @@
+body{
+    background: linear-gradient(to bottom, #66ff66 0%, #ccffcc 100%);
+    margin: 1em;
+    padding: 1em;
+    font-family: Arial, sans-serif;
+    color: #35490D;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header{
+    background-color: #d0ffaa;
+    text-align: center;
+    border: #5a9e00 solid 5px;
+    color: #000;
+}
+table{
+    margin: 1rem;
+    text-align: left;
+}
+
+main{
+    margin: 1rem;
+    padding: 2em;
+    background-color:#d0ffaa ;
+    border: #5a9e00 solid 5px;
+    color: #000;
+}
+
+span.ingredients{
+    margin: 0.5 em;
+}
+span.ingredients input{
+    width: 6em; 
+}
+
+footer{
+    background-color: rgb(rgb(181, 214, 245), green, blue);
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

@@ -2,6 +2,7 @@ var mongoose=require('mongoose');
 
 var Schema= mongoose.Schema;
 
+// Allows you to set up a recipe model
 var recipeSchema=new Schema({
     name:String,
     description:String,

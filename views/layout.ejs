@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <header>
@@ -10,10 +11,12 @@
   </header>
   <main>
     <div class="content">
-      <%= content %>
+      <%- include(content) %>
     </div>
+    
   </main>
   <footer>
+    <a href="/"> return </a>
   </footer>
 </body>
 </html>

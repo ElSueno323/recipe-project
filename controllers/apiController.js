@@ -49,15 +49,15 @@ module.exports=function(app){
             res.send(err);
         });
     })
-
-    //new recipe
+    
+    //create
     app.post('/api/recipes',function(req,res){
         Recipes.create(req.body).then((results)=>{
             res.json(results);
         }).catch((err)=>{
             res.send(err);
         });
-    })//faut tester
+    })
 
     //update
     app.put('/api/recipes/:id',function(req,res){
