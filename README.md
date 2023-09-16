@@ -16,6 +16,44 @@ node.js
  
 
 ## How to run
-1.
+# in the root folder of the project ../recipe-project
+1.install first nodemon if it is not downloaded:
 
-2.
+	sudo npm install -g nodemon
+
+2.Download all the dependecies
+
+	sudo npm install
+
+3.Launch the website
+
+	nodemon index.js
+
+4.In your web browser the web address is :
+
+	http://localhost:3000/
+
+ #Api
+ +Get, Retrieve a list of all recipes.
+ 
+ 	http://localhost:3000/api/recipes
+
+ +Post, Create a new recipe.
+
+ 	http://localhost:3000/api/recipes
+
+ +Get, Retrieve a specific recipe by ID
+
+  	http://localhost:3000/api/:id
+
+ +Put, Update a specific recipe by ID.
+
+  	http://localhost:3000/api/:id
+ 
+ +Delete , Delete a specific recipe by ID.
+
+ 	http://localhost:3000/api/:id
+   
+   
+ 
+ 	
