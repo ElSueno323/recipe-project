@@ -3,6 +3,10 @@
 ## author:
 Gabriel Espinosa
 
+## required:
+git installed
+internet connection required
+node.js
 
 ## How to build
 1.You need to clone the project : 
