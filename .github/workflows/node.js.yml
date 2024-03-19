@@ -53,4 +53,5 @@ jobs:
           script: |
             kill $(cat process.txt) 
             npm install |
-            npm start & echo $! > process.txt
+            nohup npm start & |
+            echo $! > process.txt
