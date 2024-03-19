@@ -1,4 +1,4 @@
-name: Deploy to AWS S3
+name: Deploy to EC2
 on:
   push:
     branches:
@@ -19,15 +19,38 @@ jobs:
       - name: install dependecies
         run: npm install
 
-      - name: Run website
-        run: npm start &
+      - name: Build
+        run: npm start & // build
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+
+      - name: 🚮 Remove former files
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-3
+            host: ${{HOST}}
+            username: ${{USER}}
+            key: ${{PRIVATE_KEY}}
+            port: ${{PORT}}
+            script: |
+              sudo rm -rf ./recipe-project
 
-      - name: Deploy static site to S3 bucket
-        run: aws s3 sync . s3://recipebucket-test
+      - name: 📂 Copy file via ssh
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{HOST }}
+          username: ${{ USER}}
+          key: ${{ PRIVATE_KEY}}
+          port: ${{ PORT}}
+          source: "./recipe-project/dist/*"
+          target: .
+
+      - name: 🫡 Run deploy script on remote
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ HOST }}
+          username: ${{ USER }}
+          key: ${{ PRIVATE_KEY }}
+          port: ${{ PORT }}
+          script: |
+            kill $(cat process.txt) 
+            npm install |
+            npm start & echo $! > process.txt
