@@ -26,10 +26,10 @@ jobs:
       - name: 🚮 Remove former files
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{secrets.HOST}}
-          username: ${{secrets.USER}}
-          key: ${{secrets.KEY}}
-          port: ${{secrets.PORT}}
+          host: ec2-35-180-43-42.eu-west-3.compute.amazonaws.com
+          username: ec2-user
+          key: MIIEowIBAAKCAQEAtFdhDplKMPl+QCMDra1qSeXVAH0tXda13VPaEVtCRWk0i7rwuj4FO2XGwkqbjO3k9nxPDNnCjWTVXCPBm1R9EYYeFuHF8Q4yBVhm15QehjdQK8MYJSN5AmKj0XDp/H29jLZmW8PTK7G0bYKwyGYc57YRzA8YBcw1rLA09BpXwlMWBzfogHtv1Hl4LbFD+Uxo+VacLIGz0yKwBVemqqDAMo0QStiH4Rprle8dcBuzoPp5vnnTIrGOrenZ2fn5NNeDvv8HgeH2OLR6ML/bqsNqh8gSZ1HECOW89zQZ0Ze0EwjelGZxVQExM6JpFuurFiFJQYIKJ/hO2gckTavm/6YqIQIDAQABAoIBAH+mng/MV2SlJUVWw4LLDkIyifvnnxYeJer9MI06kIU7O7NwZncd8Wwi1Xavgr1Vos0KHpZVCU42QoQO1zsQqdqemWvO8eJ4DtYTxe/wa07LllbzqIKZQk167sQQbb+IbYRNk9R+n1n9Vl5xtJqVFP66tIxBXtqzuoZ6z3C9uMLWA8X7os3qyIYjwDU4Q+YoWRVcLxHZmr5xaTwQrHer8pvLf5eLlxBFX/WjzZSmMd7GkbQp1Gx4f156zLWpBia7W5M9otXpkLcopHbE/EVKLcD2o5aTyP8LgQTVo/zmgN1ZN50bNoJM0dSJhVn8p8l0dIsE/gCAkv3EC6awudTgxvECgYEA9yazMrSEhBgWv/vLtFh+9yzVEoOx3RjbR6e7I96FU7gdTGbGEx/SDX4eCIV/ws4cIGQLbKaLDneIZP0gznHj0rjBVbF2s81oa4XmhfpG0GabbFmBE6mShska74GqeViAOTDFd4DrDAqzbs2EoCzxVAasq55XP2ecJjfSAgVGu90CgYEAusxS4mObAzIW2TwQlql1ssD4g+oXtB1zsiEmkMeGQXwTM09oKUuNlHYyPt8ZQ5z3aWFubLghxyA724nNFoVVog4FXzFiGcg0lse2ydNlA/roGBwzMooRqAxG6NZPysCornLntZJ8VkGnmIoUcp7RagWTlorq1F/gGtl4emaENRUCgYA1NRqtFtnUik8Tg8TGDas/0WIJu1pmS/yhP4X1Yel4LZH5KcMIyPfyua0DjqIDsVWyz3b6LByRv8AYZbpTV4eBjQ7qQOtaKCWLyGbpfwkRwpVBTT+RmRcXd2IaH+MwfpIUPeC1Kobvr7oTZ6Fezm4h9dHknJER8F9YhvnqP3KL7QKBgCZmGiOvlg3yHgBJ+J7/9tHoGS4E0RqVc1MKvYLFgTO07b1+dUsH3PLH2UxTUD415iYjgS+YKllkpulaSm52ukO13iTTYfcq0KSuKUUTz5Ah49QQ9/VLrJV+8JSseXqUYBh8RmVs12Jj3K/espVdUG8a9lvb8qn1i3v5eGqw6DyBAoGBANPs0dDR6FmNnEDeQaJJG0aR0NDsoVdKF6ta5sCplVGPIWGLh6xA9+OlpadGgBgmq41EAIQbF3N/W3Nmpkzm6Qr8eBdTFl7BlVZ5ieyBC9OgafvTKQeeEjszMC6l1g8oAAOPFvQpvyDiJ7fM4KEF9TVr8p3JhE0s/opTzM+TMqGR
+          port: 22
           script: |
             sudo rm -rf ./recipe-project
 
