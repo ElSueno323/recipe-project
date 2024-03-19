@@ -21,7 +21,6 @@ jobs:
 
       - name: Run website
         run: npm start &
-        timeout-minutes: 1
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
