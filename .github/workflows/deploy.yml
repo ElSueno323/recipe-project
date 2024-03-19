@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Run website
-        run:  nodemon index.js
+        run:  npm start
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
