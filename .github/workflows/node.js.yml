@@ -40,7 +40,7 @@ jobs:
           username: ${{secrets.USER}}
           key: ${{secrets.PRIVATE_KEY}}
           port: ${{secrets.PORT}}
-          source: "./recipe-project/dist/*"
+          source: "./*"
           target: .
 
       - name: 🫡 Run deploy script on remote
