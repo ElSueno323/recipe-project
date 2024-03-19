@@ -4,6 +4,7 @@
   "description": "A recipe management application that allows users to create,view , and search for recipe",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriel Espinosa",
