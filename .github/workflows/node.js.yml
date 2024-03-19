@@ -26,30 +26,30 @@ jobs:
       - name: 🚮 Remove former files
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{HOST}}
-          username: ${{USER}}
-          key: ${{PRIVATE_KEY}}
-          port: ${{PORT}}
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USER}}
+          key: ${{secrets.PRIVATE_KEY}}
+          port: ${{secrets.PORT}}
           script: |
             sudo rm -rf ./recipe-project
 
       - name: 📂 Copy file via ssh
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{HOST }}
-          username: ${{ USER}}
-          key: ${{ PRIVATE_KEY}}
-          port: ${{ PORT}}
+          host: ${{secrets.HOST }}
+          username: ${{secrets.USER}}
+          key: ${{secrets.PRIVATE_KEY}}
+          port: ${{secrets.PORT}}
           source: "./recipe-project/dist/*"
           target: .
 
       - name: 🫡 Run deploy script on remote
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ HOST }}
-          username: ${{ USER }}
-          key: ${{ PRIVATE_KEY }}
-          port: ${{ PORT }}
+          host: ${{secrets.HOST }}
+          username: ${{secrets.USER }}
+          key: ${{secrets.PRIVATE_KEY }}
+          port: ${{secrets.PORT }}
           script: |
             kill $(cat process.txt) 
             npm install |
