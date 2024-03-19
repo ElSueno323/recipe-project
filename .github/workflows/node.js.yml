@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm start & // build
+        run: npm start &
 
 
       - name: 🚮 Remove former files
