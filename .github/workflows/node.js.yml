@@ -1,0 +1,56 @@
+name: Deploy to EC2
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: install dependecies
+        run: npm install
+
+      - name: Build
+        run: npm start & // build
+
+
+      - name: 🚮 Remove former files
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{HOST}}
+          username: ${{USER}}
+          key: ${{PRIVATE_KEY}}
+          port: ${{PORT}}
+          script: |
+            sudo rm -rf ./recipe-project
+
+      - name: 📂 Copy file via ssh
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{HOST }}
+          username: ${{ USER}}
+          key: ${{ PRIVATE_KEY}}
+          port: ${{ PORT}}
+          source: "./recipe-project/dist/*"
+          target: .
+
+      - name: 🫡 Run deploy script on remote
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ HOST }}
+          username: ${{ USER }}
+          key: ${{ PRIVATE_KEY }}
+          port: ${{ PORT }}
+          script: |
+            kill $(cat process.txt) 
+            npm install |
+            npm start & echo $! > process.txt
