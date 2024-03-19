@@ -20,6 +20,9 @@ jobs:
       - name: install dependecies
         run: npm install
 
+      - name: Run website
+        run:  nodemon index.js
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
