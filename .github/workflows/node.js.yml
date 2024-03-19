@@ -51,7 +51,8 @@ jobs:
           key: ${{secrets.PRIVATE_KEY }}
           port: ${{secrets.PORT }}
           script: |
-            kill $(cat process.txt) | 
+            if ps -p $(cat process.txt) then
+              kill $(cat process.txt) fi| 
             npm install 
             nohup npm start & 
             echo $! > process.txt
