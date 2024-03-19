@@ -28,7 +28,7 @@ jobs:
         with:
           host: ${{secrets.HOST}}
           username: ${{secrets.USER}}
-          key: ${{secrets.PRIVATE_KEY}}
+          key: ${{secrets.KEY}}
           port: ${{secrets.PORT}}
           script: |
             sudo rm -rf ./recipe-project
@@ -38,7 +38,7 @@ jobs:
         with:
           host: ${{secrets.HOST}}
           username: ${{secrets.USER}}
-          key: $secrets.PRIVATE_KEY
+          key: ${{secrets.PRIVATE_KEY}}
           port: ${{secrets.PORT}}
           source: "./recipe-project/dist/*"
           target: .
