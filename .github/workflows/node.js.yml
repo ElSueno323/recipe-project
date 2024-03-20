@@ -43,7 +43,7 @@ jobs:
           source: "./*"
           target: .
 
-      - name: 🫡 Run deploy script on remote
+      - name: Delete old process
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{secrets.HOST }}
@@ -52,6 +52,15 @@ jobs:
           port: ${{secrets.PORT }}
           script: |
             kill $(pgrep -f "node index.js")  
+
+      - name: 🫡 Run deploy script on remote
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{secrets.HOST }}
+          username: ${{secrets.USER }}
+          key: ${{secrets.PRIVATE_KEY }}
+          port: ${{secrets.PORT }}
+          script: |
             npm install 
             npm start & 
             
