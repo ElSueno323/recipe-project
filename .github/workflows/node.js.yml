@@ -54,7 +54,7 @@ jobs:
             PID=$(pgrep -f "node index.js")
             if [ -n "$PID" ]; then
               echo $PID;
-              pkill $PID;
+              kill $PID;
               echo "Deleted process" 
             else 
               echo "Nothing to delete";
