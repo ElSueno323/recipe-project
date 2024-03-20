@@ -54,6 +54,7 @@ jobs:
             if [ -n "$PID" ]; then
               kill $PID
             fi 
+            ps aux
 
       - name: 🫡 Run deploy script on remote
         uses: appleboy/ssh-action@v1.0.3
