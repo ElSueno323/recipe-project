@@ -53,8 +53,7 @@ jobs:
           script: |
             PID=$(pgrep -f "node index.js")
             if [ -n "$PID" ]; then
-              echo $PID;
-              pkill -f $PID;
+              pkill -f $(pgrep -f "node index.js");
               echo "Deleted process" 
             else 
               echo "Nothing to delete!!!!";
