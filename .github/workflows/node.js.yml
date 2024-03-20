@@ -57,7 +57,7 @@ jobs:
               pkill -f $PID;
               echo "Deleted process" 
             else 
-              echo "Nothing to delete!!!";
+              echo "Nothing to delete!!!!";
             fi
             npm install 
             nohup npm start &
