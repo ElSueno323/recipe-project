@@ -51,6 +51,7 @@ jobs:
           key: ${{secrets.PRIVATE_KEY }}
           port: ${{secrets.PORT }}
           script: |
+            PID=$(pgrep -f "node index.js")
             if [ -n "$PID" ]; then
               kill $PID
             fi 
