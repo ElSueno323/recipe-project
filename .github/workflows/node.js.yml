@@ -55,6 +55,7 @@ jobs:
             if [ -n "$PID" ]; then
               kill $PID
             fi 
+            cat index.js
 
       - name: 🫡 Run deploy script on remote
         uses: appleboy/ssh-action@v1.0.3
