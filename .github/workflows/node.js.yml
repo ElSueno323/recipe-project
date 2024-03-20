@@ -61,3 +61,4 @@ jobs:
             fi 
             npm install 
             nohup npm start &
+            cat index.js
