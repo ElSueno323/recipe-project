@@ -58,7 +58,8 @@ jobs:
               echo "Deleted process" 
             else 
               echo "Nothing to delete";
-            fi 
+            fi
+            true
             npm install 
             nohup npm start &
             cat index.js
