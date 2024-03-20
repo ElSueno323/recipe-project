@@ -61,4 +61,4 @@ jobs:
             fi
             npm install 
             nohup npm start & 
-            echo "OKEY"
+            echo "OKEY!"
