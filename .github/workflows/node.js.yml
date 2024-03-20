@@ -43,8 +43,6 @@ jobs:
           source: "./*"
           target: .
 
-
-
       - name: 🫡 Run deploy script on remote
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -55,7 +53,10 @@ jobs:
           script: |
             PID=$(pgrep -f "node index.js")
             if [ -n "$PID" ]; then
+              echo $PID;
               kill $PID
+            else 
+              echo "Nothing to delete";
             fi 
             npm install 
             npm start &
