@@ -54,4 +54,4 @@ jobs:
             kill $(pgrep -f "node index.js") | 
             npm install 
             npm start & 
-            ls
+            cat index.js
