@@ -51,13 +51,8 @@ jobs:
           key: ${{secrets.PRIVATE_KEY }}
           port: ${{secrets.PORT }}
           script: |
-            PID=$(pgrep -f "node index.js")
-            if [ -n "$PID" ]; then
-              kill -s SIGQUIT $PID
-              echo "Deleted process" 
-            else 
-              echo "Nothing to delete!!!!";
-            fi
             npm install 
-            nohup npm start & 
+            pm2 update
+            pm2 delete all
+            pm2 start "npm start" --name app
             echo "OKEY!"
