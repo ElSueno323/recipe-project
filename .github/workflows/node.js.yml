@@ -22,7 +22,6 @@ jobs:
       - name: Build
         run: npm start &
 
-
       - name: 🚮 Remove former files
         uses: appleboy/ssh-action@v1.0.3
         with:

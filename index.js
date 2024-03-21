@@ -6,7 +6,7 @@ var config = require('./config');
 var apiController = require('./controllers/apiController.js');
 var recipeController = require('./controllers/recipeController.js');
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 
 
 
