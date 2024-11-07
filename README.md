@@ -1,5 +1,7 @@
-# recipe-project
+# Recipe Project
 
+## Description
+A recipe management application that allows users to create, view, and search for recipes.
 ## author:
 Gabriel Espinosa
 
